@@ -42,7 +42,7 @@ public class InstagramPhotosAdapter extends ArrayAdapter<InstagramPhoto> {
         tvCaption.setText(photo.caption);
 
         // clear recycled image
-//        lvPhoto.setImageResource(0);
+        lvPhoto.setImageDrawable(null);
         // download image from internet into imageView
         Picasso.with(getContext()).load(photo.imageUrl).into(lvPhoto);
 
