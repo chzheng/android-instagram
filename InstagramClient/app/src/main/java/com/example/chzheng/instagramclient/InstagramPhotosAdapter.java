@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -35,16 +36,21 @@ public class InstagramPhotosAdapter extends ArrayAdapter<InstagramPhoto> {
         }
 
         // Lookup the views for populating the data (image, caption)
+        TextView tvUsername = (TextView) convertView.findViewById(R.id.tvUsername);
         TextView tvCaption = (TextView) convertView.findViewById(R.id.tvCaption);
-        ImageView lvPhoto = (ImageView) convertView.findViewById(R.id.ivPhoto);
+        ImageView ivPhoto = (ImageView) convertView.findViewById(R.id.ivPhoto);
+        ImageButton ibProfilePhoto = (ImageButton) convertView.findViewById(R.id.ibProfilePhoto);
 
         // Insert the model into each of the view items
+        tvUsername.setText(photo.username);
         tvCaption.setText(photo.caption);
 
         // clear recycled image
-        lvPhoto.setImageDrawable(null);
+        ivPhoto.setImageDrawable(null);
+        ibProfilePhoto.setImageDrawable(null);
         // download image from internet into imageView
-        Picasso.with(getContext()).load(photo.imageUrl).into(lvPhoto);
+        Picasso.with(getContext()).load(photo.imageUrl).into(ivPhoto);
+        Picasso.with(getContext()).load(photo.profilePicture).into(ibProfilePhoto);
 
         // Return the created item as a view
         return convertView;

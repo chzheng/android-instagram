@@ -56,14 +56,16 @@ public class PhotoActivity extends AppCompatActivity {
                     for (int i=0; i< photosJSON.length(); i++) {
                         JSONObject photoJSON = photosJSON.getJSONObject(i);
                         InstagramPhoto photo = new InstagramPhoto();
-//                        - Author : { data => [x] => user -> username }
+                        // - Author : { data => [x] => user -> username }
                         photo.username = photoJSON.getJSONObject("user").getString("username");
-//                        - Caption: { data => [x] => caption -> text }
+                        // - Author Photo : { data => [x] => user -> profile_picture }
+                        photo.profilePicture = photoJSON.getJSONObject("user").getString("profile_picture");
+                        // - Caption: { data => [x] => caption -> text }
                         photo.caption = photoJSON.getJSONObject("caption").getString("text");
-//                        - URL:  { data => [x] => images -> standard_resolution => url }
+                        // - URL:  { data => [x] => images -> standard_resolution => url }
                         photo.imageUrl = photoJSON.getJSONObject("images").getJSONObject("standard_resolution").getString("url");
                         photo.imageHeight = photoJSON.getJSONObject("images").getJSONObject("standard_resolution").getInt("height");
-//                        - Type: { data => [x] => type }  image or video
+                        // - Type: { data => [x] => type }  image or video
                         photos.add(photo);
                     }
                 } catch (JSONException e) {
